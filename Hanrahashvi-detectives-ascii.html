@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1317">
+<title>&#x540;&#x561;&#x576;&#x580;&#x561;&#x570;&#x561;&#x577;&#x57e;&#x56b; &#x564;&#x565;&#x57f;&#x565;&#x56f;&#x57f;&#x56b;&#x57e;&#x576;&#x565;&#x580;</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian:wght@600;800&family=Noto+Sans+Armenian:wght@400;600&family=Special+Elite&display=swap">
+<style>
+/* Layout: noir case-file desk. One column of paper evidence cards under a typed report; the red stamp is the single loud moment. */
+:root {
+  --bg: #0f1317;
+  --panel: #171d23;
+  --line: #2a343d;
+  --fg: #dde5e1;
+  --muted: #8a979f;
+  --paper: #ced8cd;
+  --ink: #18211e;
+  --paper-line: #a7b5a8;
+  --stamp: #e0553a;
+  --ok: #6fbf8e;
+  --font-display: 'Noto Serif Armenian', Georgia, serif;
+  --font-body: 'Noto Sans Armenian', system-ui, sans-serif;
+  --font-type: 'Special Elite', 'Courier New', monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+.sec { margin: 28px 0 12px; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-inline: 16px;
+  padding-block: 24px 56px;
+}
+.wrap { max-width: 880px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(1.7rem, 5.5vw, 2.6rem); font-weight: 800; }
+h2 { font-size: clamp(1.4rem, 4.5vw, 2rem); font-weight: 800; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
+.label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+/* home */
+.top { display: flex; flex-direction: column; gap: 10px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.top p { margin: 0; color: var(--muted); max-width: 60ch; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 24px 0; padding: 0; list-style: none; counter-reset: s; }
+.steps li { counter-increment: s; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; font-size: 0.92rem; }
+.steps li::before { content: counter(s) "."; font-family: var(--font-type); color: var(--stamp); margin-right: 8px; }
+.group { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 32px 0 12px; }
+.gt { font-size: 1.25rem; }
+.cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.case-card { position: relative; text-align: left; background: var(--paper); color: var(--ink); border: 0; border-radius: 4px; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; box-shadow: 0 8px 0 -4px #0008; transition: transform .15s; }
+.case-card:hover { transform: translateY(-3px); }
+.case-card h3 { font-size: 1.2rem; font-weight: 800; }
+.case-card p { margin: 0; font-size: 0.9rem; }
+.case-card .meta { font-family: var(--font-type); font-size: 0.85rem; border-top: 1px dashed var(--paper-line); padding-top: 8px; margin-top: auto; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.case-card .mini { font-family: var(--font-type); letter-spacing: 0.08em; font-size: 0.95rem; overflow-wrap: anywhere; }
+.done-tag { position: absolute; top: 14px; right: 12px; font-family: var(--font-display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--stamp); border: 2px solid var(--stamp); border-radius: 3px; padding: 1px 6px; transform: rotate(6deg); }
+
+/* case */
+.back { background: none; border: 0; color: var(--muted); padding: 6px 0; margin-bottom: 12px; }
+.back:hover { color: var(--fg); }
+.report { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.report p { margin: 0; max-width: 66ch; font-size: 1.02rem; }
+.slots { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.slot { min-width: 3.3rem; padding-inline: 6px; height: 4.6rem; border: 2px dashed var(--line); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: var(--font-type); }
+.slot .n { font-size: 0.8rem; color: var(--muted); min-height: 1.2em; }
+.slot .l { font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; line-height: 1.1; color: var(--muted); }
+.slot.num { border-style: solid; border-color: var(--muted); }
+.slot.num .n { color: var(--fg); }
+.slot.dec { border-style: solid; border-color: var(--ok); background: #6fbf8e14; }
+.slot.dec .l { color: var(--ok); }
+.slot.pop { animation: pop .35s ease-out; }
+@keyframes pop { 0% { transform: scale(0.85); } 60% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.evidence { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin-bottom: 32px; }
+.card { background: var(--paper); color: var(--ink); border-radius: 4px; padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.card .tag { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4c5b53; }
+.card .eq { font-family: var(--font-type); font-size: 1.5rem; overflow-wrap: anywhere; }
+.card .row { display: flex; gap: 8px; align-items: center; }
+.card .row span { font-family: var(--font-type); font-size: 1.15rem; }
+.card input { width: 100%; min-width: 0; font-family: var(--font-type); font-size: 1.1rem; padding: 6px 8px; border: 1px solid var(--paper-line); border-radius: 3px; background: #e9efe8; color: var(--ink); }
+.card .go { background: var(--ink); color: var(--paper); border: 0; border-radius: 3px; padding: 7px 12px; font-size: 0.88rem; white-space: nowrap; }
+.card .hint { background: none; border: 0; padding: 0; text-align: left; font-size: 0.8rem; color: #4c5b53; text-decoration: underline; align-self: flex-start; }
+.card .msg { min-height: 1.3em; font-size: 0.82rem; }
+.card.solved { background: #b5c9b9; }
+.card.solved .tag::after { content: " \0000b7 \000562\000561\000581\000561\000570\000561\000575\00057f\00057e\000561\00056e"; }
+.card.shake { animation: shake .35s; }
+@keyframes shake { 20% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 80% { transform: translateX(-3px); } }
+.book { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.book-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.status { min-height: 1.5em; font-size: 0.92rem; color: var(--muted); }
+.status.bad { color: var(--stamp); }
+.status.good { color: var(--ok); }
+.letters { display: grid; grid-template-columns: repeat(auto-fill, minmax(54px, 1fr)); gap: 6px; }
+.letters button { background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 6px 2px 4px; display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
+.letters button:hover { border-color: var(--muted); }
+.letters .ch { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; }
+.letters .no { font-family: var(--font-type); font-size: 0.75rem; color: var(--muted); }
+.letters button.shake { animation: shake .35s; border-color: var(--stamp); }
+.letters button.used { opacity: 0.45; }
+
+/* win */
+.win { margin-top: 28px; background: var(--paper); color: var(--ink); border-radius: 4px; padding: 24px 18px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.win .word { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 8vw, 3rem); letter-spacing: 0.06em; overflow-wrap: anywhere; }
+.win p { margin: 0; max-width: 60ch; }
+.stamp { font-family: var(--font-display); font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; color: var(--stamp); border: 3px solid var(--stamp); border-radius: 4px; padding: 4px 12px; transform: rotate(-6deg); animation: stamp .5s cubic-bezier(.2,1.6,.4,1) both; }
+@keyframes stamp { from { transform: rotate(-6deg) scale(2); opacity: 0; } to { transform: rotate(-6deg) scale(1); opacity: 1; } }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { background: var(--ink); color: var(--paper); border: 0; border-radius: 3px; padding: 9px 16px; }
+.btn.ghost { background: none; color: var(--ink); border: 1px solid var(--ink); }
+.reset { background: none; border: 0; color: var(--muted); font-size: 0.82rem; text-decoration: underline; margin-top: 18px; padding: 0; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+// Armenian alphabet: position in the array + 1 is the letter's number.
+var ALPHA = ["\u0531","\u0532","\u0533","\u0534","\u0535","\u0536","\u0537","\u0538","\u0539","\u053a","\u053b","\u053c","\u053d","\u053e","\u053f","\u0540","\u0541","\u0542","\u0543","\u0544","\u0545","\u0546","\u0547","\u0548","\u0549","\u054a","\u054b","\u054c","\u054d","\u054e","\u054f","\u0550","\u0551","\u0548\u0552","\u0553","\u0554","\u0555","\u0556","\u0587"];
+
+// Clue = [k, add, rhs] meaning k\u00b7x + add = rhs. The solution must equal the number of the hidden letter.
+var CASES = [
+  { id: "tver", title: "\u053f\u0578\u0580\u0561\u056e \u0561\u0580\u056f\u0572\u0568", blurb: "\u0539\u0561\u0576\u0563\u0561\u0580\u0561\u0576\u056b\u0581 \u0561\u0576\u0570\u0565\u057f\u0561\u0581\u0565\u056c \u0567 \u0570\u056b\u0576 \u0561\u0580\u056f\u0572\u0568\u0589",
+    word: ["\u0539","\u054e","\u0535","\u0550"],
+    clues: [[1,6,15],[3,0,90],[2,5,15],[1,-8,24]],
+    story: ["\u0533\u056b\u0577\u0565\u0580\u0568 \u0569\u0561\u0576\u0563\u0561\u0580\u0561\u0576\u056b \u057a\u0561\u0570\u0561\u056f\u0568 \u0561\u0566\u0564\u0561\u0576\u0577\u0561\u0576 \u0567 \u056c\u057d\u0565\u056c\u0589 \u0551\u0578\u0582\u0581\u0561\u057d\u0580\u0561\u0570\u056b\u0581 \u0561\u0576\u0570\u0565\u057f\u0561\u0581\u0565\u056c \u0567 \u0570\u056b\u0576 \u0561\u0580\u056f\u0572\u0568, \u056b\u057d\u056f \u0564\u0561\u057f\u0561\u0580\u056f \u057a\u0561\u057f\u057e\u0561\u0576\u0564\u0561\u0576\u056b \u057e\u0580\u0561 \u0574\u0576\u0561\u0581\u0565\u056c \u0567 \u0569\u0572\u0569\u056b \u056f\u057f\u0578\u0580\u055d \u0579\u0578\u0580\u057d \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0578\u057e\u0589",
+            "\u0546\u0565\u0580\u0584\u0587\u0578\u0582\u0574 \u0563\u0578\u0572\u0568 \u0563\u0580\u0565\u056c \u0567. \u00ab\u0531\u0580\u056f\u0572\u0568 \u0569\u0561\u0584\u0576\u057e\u0561\u056e \u0567 \u0561\u0575\u0576 \u0562\u0561\u0576\u0565\u0580\u056b \u0574\u0565\u057b, \u0578\u0580\u0578\u0576\u0581\u0578\u057e \u0564\u0578\u0582\u0584 \u0561\u0574\u0565\u0576 \u0585\u0580 \u0570\u0561\u0577\u057e\u0578\u0582\u0574 \u0565\u0584\u00bb\u0589 \u053c\u0578\u0582\u056e\u0565\u0584 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0576\u0565\u0580\u0568, \u057e\u0565\u0580\u056e\u0561\u0576\u0565\u0584 \u0569\u057e\u0565\u0580\u0568 \u0587 \u056f\u056b\u0574\u0561\u0576\u0561\u0584\u055d \u0578\u0580\u057f\u0565\u0572 \u0583\u0576\u057f\u0580\u0565\u056c\u0589"],
+    ending: "\u0532\u0561\u057c\u0568 \u0539\u054e\u0535\u0550 \u0567\u0589 \u0531\u0580\u056f\u0572\u0568 \u0563\u057f\u0576\u057e\u0565\u0581 \u0574\u0561\u0569\u0565\u0574\u0561\u057f\u056b\u056f\u0561\u0575\u056b \u057d\u0565\u0576\u0575\u0561\u056f\u0578\u0582\u0574\u055d \u0569\u057e\u0565\u0580\u056b \u057a\u0561\u0570\u0561\u0580\u0561\u0576\u056b \u0576\u0565\u0580\u057d\u0578\u0582\u0574\u0589 \u0533\u0578\u0572\u0568 \u057e\u057d\u057f\u0561\u0570 \u0567\u0580, \u0578\u0580 \u0578\u0579 \u0578\u0584 \u0579\u056b \u056f\u057c\u0561\u0570\u056b, \u0562\u0561\u0575\u0581 \u0579\u0570\u0561\u0577\u057e\u0565\u0581, \u0578\u0580 \u0564\u0578\u0582\u0584 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0576\u0565\u0580 \u056c\u0578\u0582\u056e\u0565\u056c \u0563\u056b\u057f\u0565\u0584\u0589" },
+  { id: "anhayt", title: "\u0531\u0576\u0570\u0561\u0575\u057f \u0578\u0582\u0572\u0561\u0580\u056f\u0578\u0572\u0568", blurb: "\u0546\u0561\u0574\u0561\u056f \u0561\u057c\u0561\u0576\u0581 \u0561\u0576\u057e\u0561\u0576\u055d \u057e\u0565\u0581 \u0570\u0565\u057f\u0584\u0578\u057e\u0589",
+    word: ["\u0531","\u0546","\u0540","\u0531","\u0545","\u054f"],
+    clues: [[1,4,5],[2,0,44],[1,-6,10],[4,0,4],[1,9,30],[2,-1,61]],
+    story: ["\u0554\u0561\u0572\u0561\u0584\u0561\u057a\u0565\u057f\u0561\u0580\u0561\u0576\u056b \u0583\u0578\u057d\u057f\u0561\u0580\u056f\u0572\u0578\u0582\u0574 \u0561\u057c\u0561\u057e\u0578\u057f\u0575\u0561\u0576 \u0563\u057f\u0576\u057e\u0565\u056c \u0567 \u0576\u0561\u0574\u0561\u056f, \u0578\u0580 \u057d\u057a\u0561\u057c\u0576\u0578\u0582\u0574 \u0567 \u056f\u0561\u057d\u0565\u0581\u0576\u0565\u056c \u0584\u0561\u0572\u0561\u0584\u056b \u056c\u0578\u0582\u0575\u057d\u0565\u0580\u0568\u0589 \u0548\u0582\u0572\u0561\u0580\u056f\u0578\u0572\u056b \u0561\u0576\u0578\u0582\u0576\u0568 \u0579\u056f\u0561\u0589",
+            "\u0546\u0561\u0574\u0561\u056f\u056b \u057e\u0565\u0580\u057b\u0578\u0582\u0574 \u057d\u057f\u0578\u0580\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0561\u0576 \u0583\u0578\u056d\u0561\u0580\u0565\u0576 \u057e\u0565\u0581 \u0564\u0561\u057f\u0561\u0580\u056f \u057e\u0561\u0576\u0564\u0561\u056f \u0567 \u0587 \u057e\u0565\u0581 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0589 \u0548\u0582\u0572\u0561\u0580\u056f\u0578\u0572\u0568 \u056f\u0561\u0580\u056e\u0578\u0582\u0574 \u0567\u055d \u056b\u0580\u0565\u0576 \u0565\u0580\u0562\u0565\u0584 \u0579\u0565\u0576 \u0563\u057f\u0576\u056b\u0589 \u0531\u057a\u0561\u0581\u0578\u0582\u0581\u0565\u0584 \u0570\u0561\u056f\u0561\u057c\u0561\u056f\u0568\u0589"],
+    ending: "\u054d\u057f\u0578\u0580\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 \u00ab\u0531\u0546\u0540\u0531\u0545\u054f\u00bb \u0567\u0580\u0589 \u0548\u0582\u0572\u0561\u0580\u056f\u0578\u0572\u0568 \u0561\u0576\u0578\u0582\u0576\u0568 \u0569\u0561\u0584\u0581\u0580\u0565\u056c \u0567\u0580, \u0562\u0561\u0575\u0581 \u0569\u057e\u0565\u0580\u0568 \u0579\u0565\u0576 \u057d\u057f\u0578\u0582\u0574\u0589 \u0546\u0561\u0574\u0561\u056f\u0568 \u0563\u0580\u0565\u056c \u0567\u0580 \u0584\u0561\u0572\u0561\u0584\u0561\u0575\u056b\u0576 \u056c\u0578\u0582\u057d\u0561\u057e\u0578\u0580\u0578\u0582\u0569\u0575\u0561\u0576 \u0574\u056b \u0576\u0561\u056d\u056f\u056b\u0576 \u0561\u0577\u056d\u0561\u057f\u0561\u056f\u056b\u0581, \u0587 \u0563\u0578\u0580\u056e\u0576 \u0561\u057e\u0561\u0580\u057f\u057e\u0565\u0581 \u056d\u0561\u0572\u0561\u0572\u0589" },
+  { id: "havasarum", title: "\u0533\u0561\u0572\u057f\u0576\u056b \u057a\u0561\u0570\u0578\u0581\u0568", blurb: "\u053f\u0578\u0564\u0568 \u056b\u0576\u0576\u0561\u057f\u0561\u057c \u0562\u0561\u057c \u0567\u0589",
+    word: ["\u0540","\u0531","\u054e","\u0531","\u054d","\u0531","\u0550","\u0548\u0552","\u0544"],
+    clues: [[1,4,20],[2,0,2],[1,-5,25],[1,9,10],[2,0,58],[4,0,4],[1,-2,30],[2,2,70],[3,0,60]],
+    story: ["\u0532\u0561\u0576\u056f\u056b \u057a\u0561\u0570\u0578\u0581\u056b \u0564\u0578\u0582\u057c\u0568 \u0583\u0561\u056f\u057e\u0565\u056c \u0567, \u056b\u057d\u056f \u056f\u0578\u0564\u0568 \u0574\u0578\u057c\u0561\u0581\u0565\u056c \u0567 \u0561\u0574\u0562\u0578\u0572\u057b \u0561\u0576\u0571\u0576\u0561\u056f\u0561\u0566\u0574\u0568\u0589 \u054f\u0576\u0585\u0580\u0565\u0576\u0568 \u0561\u0580\u0571\u0561\u056f\u0578\u0582\u0580\u0564\u0578\u0582\u0574 \u0567, \u0570\u0565\u057c\u0561\u056d\u0578\u057d\u0576 \u0561\u0576\u057b\u0561\u057f\u0561\u056e\u0589",
+            "\u0546\u0580\u0561 \u0563\u0580\u0561\u057d\u0565\u0572\u0561\u0576\u056b \u057e\u0580\u0561 \u0563\u057f\u0576\u057e\u0565\u056c \u0567 \u0569\u0578\u0582\u0572\u0569. \u00ab\u053f\u0578\u0564\u0568 \u0562\u0561\u057c \u0567\u0589 \u0545\u0578\u0582\u0580\u0561\u0584\u0561\u0576\u0579\u0575\u0578\u0582\u0580 \u057f\u0561\u057c\u056b \u0570\u0561\u0574\u0561\u0580 \u0574\u0565\u056f \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0589 \u0544\u0561\u0569\u0565\u0574\u0561\u057f\u056b\u056f\u0578\u057d\u0568 \u0574\u056b\u0577\u057f \u056f\u0570\u0561\u057d\u056f\u0561\u0576\u0561\u00bb\u0589 \u053b\u0576\u0568 \u0570\u0565\u057f\u0584 \u0567, \u056b\u0576\u0568 \u057f\u0561\u057c\u0589"],
+    ending: "\u054a\u0561\u0570\u0578\u0581\u056b \u0564\u0578\u0582\u057c\u0568 \u0562\u0561\u0581\u057e\u0565\u0581, \u0565\u0580\u0562 \u0576\u0565\u0580\u057d \u0574\u057f\u0581\u0580\u056b\u0576\u055d \u0540\u0531\u054e\u0531\u054d\u0531\u0550\u0548\u0552\u0544\u0589 \u054f\u0576\u0585\u0580\u0565\u0576\u0568 \u0564\u0561 \u0568\u0576\u057f\u0580\u0565\u056c \u0567\u0580, \u0578\u0580\u0578\u057e\u0570\u0565\u057f\u0587 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0574\u0561\u0576 \u0565\u0580\u056f\u0578\u0582 \u056f\u0578\u0572\u0574\u0565\u0580\u0568 \u0574\u056b\u0577\u057f \u057a\u0565\u057f\u0584 \u0567 \u0574\u0576\u0561\u0576 \u0576\u0578\u0582\u0575\u0576\u0568, \u056b\u0576\u0579\u057a\u0565\u057d \u057a\u0561\u0570\u0578\u0581\u056b \u0576\u0565\u0580\u057d\u0576 \u0578\u0582 \u0564\u0580\u057d\u0568\u0589" },
+  { id: "hanrahashiv", title: "\u0544\u0565\u056e \u0563\u0578\u0572\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568", blurb: "\u0533\u0580\u0561\u0564\u0561\u0580\u0561\u0576\u056b\u0581 \u0563\u0578\u0572\u0561\u0581\u057e\u0565\u056c \u0567 \u0571\u0565\u057c\u0561\u0563\u056b\u0580\u0568\u0589",
+    word: ["\u0540","\u0531","\u0546","\u0550","\u0531","\u0540","\u0531","\u0547","\u053b","\u054e"],
+    clues: [[1,7,23],[3,2,5],[1,-8,14],[2,0,64],[1,9,10],[2,-4,28],[5,0,5],[1,7,30],[3,1,34],[1,-10,20]],
+    story: ["\u0554\u0561\u0572\u0561\u0584\u0561\u0575\u056b\u0576 \u0563\u0580\u0561\u0564\u0561\u0580\u0561\u0576\u056b\u0581 \u0563\u0578\u0572\u0561\u0581\u057e\u0565\u056c \u0567 \u0570\u0561\u0566\u057e\u0561\u0563\u0575\u0578\u0582\u057f \u0571\u0565\u057c\u0561\u0563\u056b\u0580\u0568, \u0587 \u0578\u0579 \u0574\u056b \u0564\u0578\u0582\u057c \u0578\u0582 \u0578\u0579 \u0574\u056b \u057a\u0561\u057f\u0578\u0582\u0570\u0561\u0576 \u056f\u0578\u057f\u0580\u057e\u0561\u056e \u0579\u0567\u0589 \u0533\u0578\u0572\u0568 \u0569\u0578\u0572\u0565\u056c \u0567 \u057f\u0561\u057d\u0568 \u0570\u0565\u057f\u0584\u0589",
+            "\u0541\u0565\u057c\u0561\u0563\u056b\u0580\u0568 \u0569\u0561\u0584\u0581\u057e\u0561\u056e \u0567 \u0574\u056b \u0563\u0580\u0584\u056b \u0574\u0565\u057b, \u0578\u0580\u056b \u057e\u0565\u0580\u0576\u0561\u0563\u056b\u0580\u0568 \u057f\u0561\u057d\u0568 \u057f\u0561\u057c \u0567\u0589 \u054d\u0561 \u0561\u0574\u0565\u0576\u0561\u0565\u0580\u056f\u0561\u0580 \u0587 \u0561\u0574\u0565\u0576\u0561\u0564\u056a\u057e\u0561\u0580 \u0563\u0578\u0580\u056e\u0576 \u0567\u0589 \u0532\u0578\u056c\u0578\u0580 \u0570\u0565\u057f\u0584\u0565\u0580\u0568 \u0574\u0561\u0569\u0565\u0574\u0561\u057f\u056b\u056f\u0561\u056f\u0561\u0576 \u0565\u0576\u0589"],
+    ending: "\u0541\u0565\u057c\u0561\u0563\u056b\u0580\u0568 \u0563\u057f\u0576\u057e\u0565\u0581 \u00ab\u0540\u0531\u0546\u0550\u0531\u0540\u0531\u0547\u053b\u054e\u00bb \u0564\u0561\u057d\u0561\u0563\u0580\u0584\u056b \u0565\u0580\u056f\u0578\u0582 \u0567\u057b\u0565\u0580\u056b \u0561\u0580\u0561\u0576\u0584\u0578\u0582\u0574\u0589 \u0533\u0578\u0572\u0568 \u0561\u0575\u0576 \u0569\u0561\u0584\u0581\u0580\u0565\u056c \u0567\u0580 \u0561\u0575\u0576\u057f\u0565\u0572, \u0578\u0580\u057f\u0565\u0572 \u0578\u0579 \u0578\u0584 \u0579\u0567\u0580 \u0576\u0561\u0575\u056b\u0589 \u0534\u0578\u0582\u0584 \u0576\u0561\u0575\u0565\u0581\u056b\u0584\u0589" },
+  { id: "nshan", title: "\u053f\u0565\u0572\u056e \u0581\u0578\u0582\u0581\u0561\u0576\u0561\u056f\u0568", blurb: "\u053d\u0561\u0579\u0574\u0565\u0580\u0578\u0582\u056f\u056b \u0576\u0577\u0561\u0576\u0568 \u0583\u0578\u056d\u0565\u056c \u0565\u0576\u0589",
+    word: ["\u0546","\u0547","\u0531","\u0546"],
+    clues: [[1,8,30],[2,-3,43],[5,0,5],[3,1,67]],
+    story: ["\u053c\u0565\u057c\u0576\u0561\u0575\u056b\u0576 \u056d\u0561\u0579\u0574\u0565\u0580\u0578\u0582\u056f\u0578\u0582\u0574 \u056b\u0576\u0579-\u0578\u0580 \u0574\u0565\u056f\u0568 \u0583\u0578\u056d\u0565\u056c \u0567 \u0573\u0561\u0576\u0561\u057a\u0561\u0580\u0570\u056b \u0581\u0578\u0582\u0581\u0561\u0576\u0561\u056f\u0568, \u0587 \u0561\u057c\u0561\u057e\u0578\u057f\u0575\u0561\u0576 \u0574\u056b \u0561\u0574\u0562\u0578\u0572\u057b \u0561\u057e\u057f\u0578\u0562\u0578\u0582\u057d \u057d\u056d\u0561\u056c \u0573\u0561\u0576\u0561\u057a\u0561\u0580\u0570\u0578\u057e \u0567 \u0563\u0576\u0561\u0581\u0565\u056c\u0589",
+            "\u0551\u0578\u0582\u0581\u0561\u0576\u0561\u056f\u056b \u057d\u0575\u0561\u0576 \u057f\u0561\u056f \u0563\u057f\u0576\u057e\u0565\u056c \u0567 \u0569\u0578\u0582\u0572\u0569\u055d \u0579\u0578\u0580\u057d \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0578\u057e\u0589 \u053f\u0565\u0572\u056e\u0561\u0580\u0561\u0580\u0568 \u0569\u0578\u0572\u0565\u056c \u0567 \u056b\u0580 \u0561\u0576\u057e\u0561\u0576 \u0583\u0578\u056d\u0561\u0580\u0565\u0576 \u0574\u056b \u0562\u0561\u057c, \u0587 \u0561\u0575\u0564 \u0562\u0561\u057c\u0568 \u056f\u0561\u057d\u056b, \u0569\u0565 \u0578\u057e \u0567 \u0576\u0561\u0589"],
+    ending: "\u0532\u0561\u057c\u0568 \u0546\u0547\u0531\u0546 \u0567\u0589 \u053f\u0565\u0572\u056e\u0561\u0580\u0561\u0580\u0568 \u0561\u0574\u0565\u0576 \u0561\u0576\u0563\u0561\u0574 \u0569\u0578\u0572\u0576\u0578\u0582\u0574 \u0567\u0580 \u0576\u0578\u0582\u0575\u0576 \u0576\u0577\u0561\u0576\u0568, \u056b\u057d\u056f \u0564\u0578\u0582\u0584 \u0561\u0575\u0576 \u0561\u0580\u0564\u0565\u0576 \u056f\u0561\u0580\u0564\u0561\u0581\u0565\u056c \u0565\u0584\u0589 \u0531\u057e\u057f\u0578\u0562\u0578\u0582\u057d\u0568 \u0563\u057f\u0576\u057e\u0565\u0581 \u0561\u0576\u057e\u057f\u0561\u0576\u0563, \u0587 \u0573\u0561\u0576\u0561\u057a\u0561\u0580\u0570\u056b \u0581\u0578\u0582\u0581\u0561\u0576\u0561\u056f\u0568 \u057e\u0565\u0580\u0561\u056f\u0561\u0576\u0563\u0576\u057e\u0565\u0581\u0589" },
+  { id: "armat", title: "\u0531\u0575\u0563\u0578\u0582 \u0563\u0561\u0572\u057f\u0576\u056b\u0584\u0568", blurb: "\u0544\u056b \u0562\u0561\u0576 \u0569\u0561\u0584\u0581\u0580\u0561\u056e \u0567 \u056e\u0561\u057c\u056b \u057f\u0561\u056f\u0589",
+    word: ["\u0531","\u0550","\u0544","\u0531","\u054f"],
+    clues: [[6,0,6],[1,-9,23],[2,3,43],[1,12,13],[3,-2,91]],
+    story: ["\u0532\u0578\u0582\u057d\u0561\u0562\u0561\u0576\u0561\u056f\u0561\u0576 \u0561\u0575\u0563\u0578\u0582\u0574 \u0563\u056b\u0577\u0565\u0580\u0568 \u056b\u0576\u0579-\u0578\u0580 \u0574\u0565\u056f\u0568 \u0583\u0578\u0580\u0565\u056c \u0567 \u0570\u0578\u0572\u0568, \u0562\u0561\u0575\u0581 \u0578\u0579\u056b\u0576\u0579 \u0579\u056b \u057f\u0561\u0580\u0565\u056c\u0589 \u0540\u0578\u0572\u056b \u057e\u0580\u0561 \u0569\u0578\u0572\u0565\u056c \u0567 \u0570\u056b\u0576\u0563 \u0569\u056b\u057e\u0589",
+            "\u0531\u0575\u0563\u0565\u057a\u0561\u0576\u0568 \u056f\u0561\u0580\u056e\u0578\u0582\u0574 \u0567\u055d \u0564\u0561 \u0569\u0561\u0584\u057d\u057f\u0578\u0581\u056b \u0570\u0561\u057d\u0581\u0565\u0576 \u0567\u0589 \u054e\u0565\u0580\u056e\u0561\u0576\u0565\u0584 \u0570\u056b\u0576\u0563 \u057f\u0561\u057c\u0568, \u0587 \u056f\u056b\u0574\u0561\u0576\u0561\u0584\u055d \u0578\u0582\u0580 \u0567 \u0563\u0578\u0572\u0568 \u0569\u0561\u0584\u0581\u0580\u0565\u056c \u0563\u0561\u0576\u0571\u0568\u0589"],
+    ending: "\u0532\u0561\u057c\u0568 \u0531\u0550\u0544\u0531\u054f \u0567\u0589 \u0533\u0561\u0576\u0571\u0568 \u0569\u0561\u0584\u0581\u057e\u0561\u056e \u0567\u0580 \u0570\u056b\u0576 \u056e\u0561\u057c\u056b \u0561\u0580\u0574\u0561\u057f\u056b \u057f\u0561\u056f\u0589 \u0544\u0561\u0569\u0565\u0574\u0561\u057f\u056b\u056f\u0561\u0575\u0578\u0582\u0574 \u0567\u056c \u0561\u0580\u0574\u0561\u057f\u0568 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0574\u0561\u0576 \u0561\u0575\u0576 \u0569\u056b\u057e\u0576 \u0567, \u0578\u0580\u0568 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0568 \u0564\u0561\u0580\u0571\u0576\u0578\u0582\u0574 \u0567 \u0573\u056b\u0577\u057f\u0589" },
+  { id: "lutsel", title: "\u053f\u0578\u0572\u057a\u057e\u0561\u056e \u0570\u0561\u0574\u0561\u056f\u0561\u0580\u0563\u056b\u0579\u0568", blurb: "\u0534\u057a\u0580\u0578\u0581\u056b \u0570\u0561\u0574\u0561\u056f\u0561\u0580\u0563\u0579\u0561\u0575\u056b\u0576 \u057d\u0565\u0576\u0575\u0561\u056f\u0568 \u0583\u0561\u056f \u0567\u0589",
+    word: ["\u053c","\u0548\u0552","\u053e","\u0535","\u053c"],
+    clues: [[2,1,25],[1,-4,30],[3,0,42],[1,15,20],[4,-8,40]],
+    story: ["\u0534\u057a\u0580\u0578\u0581\u056b \u0570\u0561\u0574\u0561\u056f\u0561\u0580\u0563\u0579\u0561\u0575\u056b\u0576 \u057d\u0565\u0576\u0575\u0561\u056f\u0568 \u056f\u0578\u0572\u057a\u057e\u0565\u056c \u0567, \u0587 \u0563\u0561\u0572\u057f\u0576\u0561\u0562\u0561\u057c\u0568 \u0563\u056b\u057f\u0565\u0580 \u0574\u056b\u0561\u0575\u0576 \u057f\u0576\u0585\u0580\u0565\u0576\u0568, \u0578\u0580 \u0561\u0575\u0564 \u0585\u0580\u0568 \u0579\u056b \u0565\u056f\u0565\u056c\u0589",
+            "\u0544\u0578\u0576\u056b\u057f\u0578\u0580\u056b \u056f\u0578\u0572\u0584\u056b\u0576 \u056f\u057a\u0581\u0580\u0561\u056e \u0567 \u0569\u0578\u0582\u0572\u0569. \u00ab\u0533\u0561\u0572\u057f\u0576\u0561\u0562\u0561\u057c\u0568 \u0561\u0575\u0576 \u0567, \u056b\u0576\u0579 \u0561\u0576\u0578\u0582\u0574 \u0567 \u0570\u0565\u057f\u0561\u056d\u0578\u0582\u0575\u0566\u0568 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0574\u0561\u0576 \u0570\u0565\u057f\u00bb\u0589 \u0540\u056b\u0576\u0563 \u057f\u0561\u057c, \u0570\u056b\u0576\u0563 \u0570\u0565\u057f\u0584\u0589"],
+    ending: "\u0533\u0561\u0572\u057f\u0576\u0561\u0562\u0561\u057c\u0568 \u053c\u0548\u0552\u053e\u0535\u053c \u0567\u0580\u0589 \u054d\u0565\u0576\u0575\u0561\u056f\u0568 \u0562\u0561\u0581\u057e\u0565\u0581, \u0587 \u0570\u0561\u0574\u0561\u056f\u0561\u0580\u0563\u056b\u0579\u0576\u0565\u0580\u0568 \u0574\u056b\u0561\u0581\u0561\u0576\u0589 \u0540\u0565\u057f\u0561\u056d\u0578\u0582\u0575\u0566\u0568 \u056b\u057d\u056f\u0561\u057a\u0565\u057d \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0568 \u056c\u0578\u0582\u056e\u0578\u0582\u0574 \u0567, \u056b\u057d\u056f \u0570\u0565\u057f\u0578 \u056c\u0578\u0582\u056e\u0578\u0582\u0574 \u0567 \u0576\u0561\u0587 \u0563\u0578\u0580\u056e\u0568\u0589" },
+  { id: "gortsakits", title: "\u053f\u0578\u0580\u0561\u056e \u0563\u0578\u0580\u056e\u0561\u056f\u056b\u0581\u0568", blurb: "\u053f\u0561\u0574\u0580\u057b\u056b \u0577\u056b\u0576\u0561\u0580\u0561\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 \u056f\u0561\u0576\u0563\u0576\u0565\u056c \u0567\u0589",
+    word: ["\u0533","\u0548","\u0550","\u053e","\u0531","\u053f","\u053b","\u0551"],
+    clues: [[1,17,20],[2,0,48],[4,-3,125],[1,5,19],[7,0,7],[3,5,50],[2,-2,20],[1,-13,20]],
+    story: ["\u053b\u0576\u056a\u0565\u0576\u0565\u0580\u0561\u056f\u0561\u0576 \u0568\u0576\u056f\u0565\u0580\u0578\u0582\u0569\u0575\u0561\u0576 \u0576\u0561\u056d\u0561\u0563\u056e\u056b\u0581 \u056f\u0578\u0580\u0565\u056c \u0567 \u0574\u056b \u056f\u0561\u0580\u0587\u0578\u0580 \u0569\u056b\u057e, \u0587 \u056f\u0561\u0574\u0580\u057b\u056b \u0577\u056b\u0576\u0561\u0580\u0561\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 \u056f\u0561\u0576\u0563\u0576\u0565\u056c \u0567\u0589 \u0531\u057c\u0561\u0576\u0581 \u0561\u0575\u0564 \u0569\u057e\u056b \u0570\u0561\u0577\u057e\u0561\u0580\u056f\u0568 \u0573\u056b\u0577\u057f \u0579\u0567\u0589",
+            "\u053b\u0576\u056a\u0565\u0576\u0565\u0580\u0568 \u0569\u0578\u0572\u0565\u056c \u0567 \u0578\u0582\u0569 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574 \u0587 \u0574\u056b \u0570\u0578\u0582\u0577\u0578\u0582\u0574. \u00ab\u0531\u0575\u0564 \u0569\u056b\u057e\u0568 \u056f\u0561\u0576\u0563\u0576\u0561\u056e \u0567 \u0583\u0578\u0583\u0578\u056d\u0561\u056f\u0561\u0576\u056b \u0561\u057c\u057b\u0587 \u0587 \u0561\u057d\u0578\u0582\u0574 \u0567\u055d \u0584\u0561\u0576\u056b \u0561\u0576\u0563\u0561\u0574 \u057e\u0565\u0580\u0581\u0576\u0565\u056c \u0576\u0580\u0561\u0576\u00bb\u0589"],
+    ending: "\u0532\u0561\u057c\u0568 \u0533\u0548\u0550\u053e\u0531\u053f\u053b\u0551 \u0567\u0589 3x \u0561\u0580\u057f\u0561\u0570\u0561\u0575\u057f\u0578\u0582\u0569\u0575\u0561\u0576 \u0574\u0565\u057b \u0563\u0578\u0580\u056e\u0561\u056f\u056b\u0581\u0568 3-\u0576 \u0567\u0589 \u053f\u0578\u0580\u0561\u056e \u0569\u056b\u057e\u0568 \u0563\u057f\u0576\u057e\u0565\u0581, \u0587 \u056f\u0561\u0574\u0578\u0582\u0580\u057b\u0568 \u0561\u057e\u0561\u0580\u057f\u057e\u0565\u0581 \u056a\u0561\u0574\u0561\u0576\u0561\u056f\u056b\u0576\u0589" },
+  { id: "parzetsnel", title: "\u053d\u0573\u0573\u057e\u0561\u056e \u0576\u0561\u0574\u0561\u056f\u0568", blurb: "\u0546\u0561\u0574\u0561\u056f\u0568 \u0577\u0561\u057f \u0565\u0580\u056f\u0561\u0580 \u0578\u0582 \u0562\u0561\u0580\u0564 \u0567\u0589",
+    word: ["\u054a","\u0531","\u0550","\u0536","\u0535","\u0551","\u0546","\u0535","\u053c"],
+    clues: [[2,0,52],[1,3,4],[1,-12,20],[5,2,32],[3,0,15],[1,7,40],[2,-4,40],[4,3,23],[3,-6,30]],
+    story: ["\u0534\u0565\u057f\u0565\u056f\u057f\u056b\u057e\u0568 \u057d\u057f\u0561\u0581\u0565\u056c \u0567 \u0574\u056b \u0576\u0561\u0574\u0561\u056f, \u0578\u0580 \u0563\u0580\u057e\u0561\u056e \u0567 \u0561\u0575\u0576\u057a\u0565\u057d \u056d\u0573\u0573\u057e\u0561\u056e, \u0578\u0580 \u0578\u0579 \u0578\u0584 \u0579\u056b \u0570\u0561\u057d\u056f\u0561\u0576\u0578\u0582\u0574 \u0576\u0580\u0561 \u0574\u056b\u057f\u0584\u0568\u0589 \u0544\u056b \u0561\u0574\u0562\u0578\u0572\u057b \u0563\u056b\u0577\u0565\u0580 \u0561\u0574\u0562\u0578\u0572\u057b \u0562\u0561\u056a\u0561\u0576\u0574\u0578\u0582\u0576\u0584\u0568 \u0583\u0578\u0580\u0571\u0565\u056c \u0567 \u056f\u0561\u0580\u0564\u0561\u056c\u0589",
+            "\u054e\u0565\u0580\u057b\u0578\u0582\u0574 \u056f\u0561\u0580 \u0574\u056b \u0570\u0578\u0582\u0577\u0578\u0582\u0574\u055d \u056b\u0576\u0568 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0578\u057e\u0589 \u0531\u0575\u0576 \u0561\u057d\u0578\u0582\u0574 \u0567, \u0569\u0565 \u056b\u0576\u0579 \u057a\u0565\u057f\u0584 \u0567 \u0561\u0576\u0565\u056c \u0576\u0561\u0574\u0561\u056f\u056b \u0570\u0565\u057f, \u0578\u0580 \u0561\u0575\u0576 \u0564\u0561\u057c\u0576\u0561 \u0570\u0561\u057d\u056f\u0561\u0576\u0561\u056c\u056b\u0589"],
+    ending: "\u0532\u0561\u057c\u0568 \u054a\u0531\u0550\u0536\u0535\u0551\u0546\u0535\u053c \u0567\u0589 \u0535\u0580\u0562 \u0565\u0580\u056f\u0561\u0580 \u0561\u0580\u057f\u0561\u0570\u0561\u0575\u057f\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 \u057a\u0561\u0580\u0566\u0565\u0581\u0580\u056b\u0576, \u0576\u0561\u0574\u0561\u056f\u0568 \u0564\u0561\u0580\u0571\u0561\u057e \u0565\u0580\u0565\u0584 \u056f\u0561\u0580\u0573 \u0576\u0561\u056d\u0561\u0564\u0561\u057d\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0589 \u0544\u0561\u0569\u0565\u0574\u0561\u057f\u056b\u056f\u0561\u0575\u0578\u0582\u0574 \u0567\u056c \u0570\u0561\u0573\u0561\u056d \u0576\u0578\u0582\u0575\u0576 \u0562\u0561\u0576\u0576 \u0567 \u0561\u0580\u057e\u0578\u0582\u0574\u0589" },
+  { id: "popokhakan", title: "\u0553\u0561\u056d\u0579\u0578\u0572 \u056f\u0561\u057d\u056f\u0561\u056e\u0575\u0561\u056c\u0568", blurb: "\u0546\u0561 \u0561\u0574\u0565\u0576 \u0585\u0580 \u057f\u0565\u0572 \u0567 \u0583\u0578\u056d\u0578\u0582\u0574\u0589",
+    word: ["\u0553","\u0548","\u0553","\u0548","\u053d","\u0531","\u053f","\u0531","\u0546"],
+    clues: [[1,5,40],[3,0,72],[2,-5,65],[1,6,30],[2,4,30],[9,0,9],[5,-5,70],[2,3,5],[1,9,31]],
+    story: ["\u053f\u0561\u057d\u056f\u0561\u056e\u0575\u0561\u056c\u0568 \u0565\u0580\u0562\u0565\u0584 \u0565\u0580\u056f\u0578\u0582 \u0585\u0580 \u0561\u0576\u0568\u0576\u0564\u0574\u0565\u057b \u0576\u0578\u0582\u0575\u0576 \u057f\u0565\u0572\u0578\u0582\u0574 \u0579\u056b \u056c\u056b\u0576\u0578\u0582\u0574\u0589 \u0535\u0580\u0565\u056f \u0576\u0561 \u0535\u0580\u0587\u0561\u0576\u0578\u0582\u0574 \u0567\u0580, \u0561\u0575\u057d\u0585\u0580 \u0533\u0575\u0578\u0582\u0574\u0580\u056b\u0578\u0582\u0574, \u057e\u0561\u0572\u0568 \u056f\u056c\u056b\u0576\u056b \u0574\u0565\u056f \u0578\u0582\u0580\u056b\u0577 \u0584\u0561\u0572\u0561\u0584\u0578\u0582\u0574\u0589",
+            "\u0546\u0580\u0561 \u0585\u0580\u0561\u0563\u0580\u056b\u0581 \u057a\u0578\u056f\u057e\u0561\u056e \u0567\u057b\u056b \u057e\u0580\u0561 \u056b\u0576\u0568 \u0570\u0565\u057f\u0584 \u056f\u0561\u0589 \u0532\u0561\u057c\u0568 \u056f\u0561\u057d\u056b\u055d \u056b\u0576\u0579\u057a\u0565\u057d \u0567 \u056f\u0578\u0579\u057e\u0578\u0582\u0574 \u0561\u0575\u0576, \u056b\u0576\u0579\u0568 \u0583\u0578\u056d\u0578\u0582\u0574 \u0567 \u056b\u0580 \u0561\u0580\u056a\u0565\u0584\u0568, \u056b\u0576\u0579\u057a\u0565\u057d \u056f\u0561\u057d\u056f\u0561\u056e\u0575\u0561\u056c\u0568\u055d \u057f\u0565\u0572\u0568\u0589"],
+    ending: "\u0532\u0561\u057c\u0568 \u0553\u0548\u0553\u0548\u053d\u0531\u053f\u0531\u0546 \u0567\u0589 \u0540\u0561\u057e\u0561\u057d\u0561\u0580\u0574\u0561\u0576 \u0574\u0565\u057b x-\u0568 \u0576\u0578\u0582\u0575\u0576\u057a\u0565\u057d \u056f\u0561\u0580\u0578\u0572 \u0567 \u057f\u0561\u0580\u0562\u0565\u0580 \u0561\u0580\u056a\u0565\u0584\u0576\u0565\u0580 \u0568\u0576\u0564\u0578\u0582\u0576\u0565\u056c, \u056b\u057d\u056f \u056f\u0561\u057d\u056f\u0561\u056e\u0575\u0561\u056c\u0568 \u0562\u057c\u0576\u057e\u0565\u0581 \u054d\u0587\u0561\u0576\u056b \u0561\u0583\u056b\u0576\u0589" },
+  { id: "nuynutyun", title: "\u0535\u0580\u056f\u057e\u0578\u0580\u0575\u0561\u056f\u0576\u0565\u0580\u056b \u0563\u0578\u0580\u056e\u0568", blurb: "\u0535\u0580\u056f\u0578\u0582 \u056f\u0578\u0572\u0574\u0565\u0580\u0568 \u0574\u056b\u0577\u057f \u0576\u0578\u0582\u0575\u0576\u0576 \u0565\u0576\u0589",
+    word: ["\u0546","\u0548\u0552","\u0545","\u0546","\u0548\u0552","\u0539","\u0545","\u0548\u0552","\u0546"],
+    clues: [[2,6,50],[1,16,50],[3,0,63],[1,11,33],[2,-8,60],[4,1,37],[1,-9,12],[5,0,170],[3,-4,62]],
+    story: ["\u0554\u0561\u0572\u0561\u0584\u0578\u0582\u0574 \u0565\u0580\u056f\u0578\u0582 \u0565\u0580\u056f\u057e\u0578\u0580\u0575\u0561\u056f \u056f\u0561\u0576, \u0578\u0580 \u0561\u0574\u0565\u0576 \u056b\u0576\u0579\u0578\u057e \u0576\u0574\u0561\u0576 \u0565\u0576 \u056b\u0580\u0561\u0580\u0589 \u054e\u056f\u0561\u0576\u0565\u0580\u0568 \u0579\u0565\u0576 \u056f\u0561\u0580\u0578\u0572\u0561\u0576\u0578\u0582\u0574 \u0561\u057d\u0565\u056c, \u0569\u0565 \u0576\u0580\u0561\u0576\u0581\u056b\u0581 \u0578\u0580\u0568 \u0574\u057f\u0565\u056c \u0567 \u0578\u057d\u056f\u0565\u0580\u0579\u0561\u056f\u0561\u0576 \u056d\u0561\u0576\u0578\u0582\u0569\u0589",
+            "\u0548\u057d\u057f\u056b\u056f\u0561\u0576\u0568 \u056f\u0561\u0580\u056e\u0578\u0582\u0574 \u0567\u055d \u0564\u0561 \u0565\u0580\u056f\u0578\u0582 \u056f\u0578\u0572\u0574\u0565\u0580\u056b \u0576\u0578\u0582\u0575\u0576\u0578\u0582\u0569\u0575\u0561\u0576 \u0570\u0561\u0580\u0581 \u0567\u0589 \u053b\u0576\u0568 \u0570\u0565\u057f\u0584\u0568 \u056f\u057f\u0561\u0576 \u0561\u0575\u0576 \u0562\u0561\u057c\u0568, \u0578\u0580 \u0576\u056f\u0561\u0580\u0561\u0563\u0580\u0578\u0582\u0574 \u0567 \u0576\u0574\u0561\u0576 \u0564\u0565\u057a\u0584\u0565\u0580\u0568\u0589"],
+    ending: "\u0532\u0561\u057c\u0568 \u0546\u0548\u0552\u0545\u0546\u0548\u0552\u0539\u0545\u0548\u0552\u0546 \u0567\u0589 \u0546\u0578\u0582\u0575\u0576\u0578\u0582\u0569\u0575\u0578\u0582\u0576 \u0567 \u056f\u0578\u0579\u057e\u0578\u0582\u0574 \u0561\u0575\u0576 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568, \u0578\u0580\u0568 \u0573\u056b\u0577\u057f \u0567 x-\u056b \u0581\u0561\u0576\u056f\u0561\u0581\u0561\u056e \u0561\u0580\u056a\u0565\u0584\u056b \u0570\u0561\u0574\u0561\u0580\u0589 \u0535\u0580\u056f\u057e\u0578\u0580\u0575\u0561\u056f\u0576\u0565\u0580\u056b \u057a\u0561\u057f\u0574\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 \u057e\u0565\u0580\u057b\u0578\u0582\u0574 \u057a\u0561\u0580\u0566\u057e\u0565\u0581 \u0565\u0580\u056f\u0578\u0582 \u056f\u0578\u0572\u0574\u0565\u0580\u056b \u0570\u0561\u0574\u0561\u0580 \u0573\u056b\u0577\u057f\u0589" },
+  { id: "artahaytutyun", title: "\u054e\u0565\u0580\u057b\u056b\u0576 \u0563\u0578\u0580\u056e\u0568", blurb: "\u054f\u0561\u057d\u0576\u0565\u0580\u0565\u0584 \u0570\u0565\u057f\u0584, \u0561\u0574\u0565\u0576\u0561\u0565\u0580\u056f\u0561\u0580 \u0562\u0561\u057c\u0568\u0589",
+    word: ["\u0531","\u0550","\u054f","\u0531","\u0540","\u0531","\u0545","\u054f","\u0548\u0552","\u0539","\u0545","\u0548\u0552","\u0546"],
+    clues: [[1,6,7],[2,4,68],[1,-7,24],[3,0,3],[2,-2,30],[8,0,8],[1,10,31],[3,2,95],[2,0,68],[1,-3,6],[3,-3,60],[1,-4,30],[2,5,49]],
+    story: ["\u0531\u0575\u057d \u0563\u0578\u0580\u056e\u0568 \u0562\u0578\u056c\u0578\u0580\u056b\u0581 \u0564\u056a\u057e\u0561\u0580 \u0567\u0589 \u0533\u0578\u0572\u0568 \u0569\u0578\u0572\u0565\u056c \u0567 \u057f\u0561\u057d\u0576\u0565\u0580\u0565\u0584 \u0570\u0565\u057f\u0584 \u0587 \u0574\u056b \u0576\u0561\u0574\u0561\u056f. \u00ab\u0535\u057d \u0569\u0561\u0584\u0576\u057e\u0578\u0582\u0574 \u0565\u0574 \u0569\u057e\u0565\u0580\u056b, \u057f\u0561\u057c\u0565\u0580\u056b \u0587 \u0576\u0577\u0561\u0576\u0576\u0565\u0580\u056b \u0574\u056b\u0561\u057d\u0576\u0578\u0582\u0569\u0575\u0561\u0576 \u0574\u0565\u057b\u00bb\u0589",
+            "\u0535\u0569\u0565 \u056f\u0561\u0580\u0578\u0572\u0561\u0576\u0561\u0584 \u057e\u0565\u0580\u056e\u0561\u0576\u0565\u056c \u057f\u0561\u057d\u0576\u0565\u0580\u0565\u0584 \u057f\u0561\u057c\u0568, \u056f\u056b\u0574\u0561\u0576\u0561\u0584, \u0569\u0565 \u056b\u0576\u0579 \u0561\u0576\u057e\u0561\u0576\u0578\u0582\u0574 \u0565\u0576 \u0561\u0575\u0564 \u0574\u056b\u0561\u057d\u0576\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 \u0574\u0561\u0569\u0565\u0574\u0561\u057f\u056b\u056f\u0561\u0575\u0578\u0582\u0574\u0589 \u0532\u0561\u056d\u057f \u0565\u0572\u0565\u0584, \u0564\u0565\u057f\u0565\u056f\u057f\u056b\u057e\u0589"],
+    ending: "\u0532\u0561\u057c\u0568 \u0531\u0550\u054f\u0531\u0540\u0531\u0545\u054f\u0548\u0552\u0539\u0545\u0548\u0552\u0546 \u0567\u0589 \u0539\u057e\u0565\u0580\u056b\u0581, \u057f\u0561\u057c\u0565\u0580\u056b\u0581 \u0587 \u0576\u0577\u0561\u0576\u0576\u0565\u0580\u056b\u0581 \u056f\u0561\u0566\u0574\u057e\u0561\u056e \u0563\u0580\u0561\u057c\u0578\u0582\u0574\u0568 \u0574\u0561\u0569\u0565\u0574\u0561\u057f\u056b\u056f\u0561\u0575\u0578\u0582\u0574 \u056f\u0578\u0579\u057e\u0578\u0582\u0574 \u0567 \u0561\u0580\u057f\u0561\u0570\u0561\u0575\u057f\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0589 \u0534\u0578\u0582\u0584 \u0583\u0561\u056f\u0565\u0581\u056b\u0584 \u0562\u0578\u056c\u0578\u0580 \u0563\u0578\u0580\u056e\u0565\u0580\u0568, \u0570\u056b\u0561\u0576\u0561\u056c\u056b \u0570\u0565\u057f\u0561\u056d\u0578\u0582\u0575\u0566 \u0565\u0584\u0589" }
+];
+
+CASES.forEach(function (c, i) { c.group = i < 4 ? 1 : 2; });
+
+var app = document.getElementById("app");
+var STORE = "detectives-v1";
+var saved = { done: {} };
+try { var raw = localStorage.getItem(STORE); if (raw) saved = JSON.parse(raw) || saved; } catch (e) {}
+if (!saved.done) saved.done = {};
+function persist() { try { localStorage.setItem(STORE, JSON.stringify(saved)); } catch (e) {} }
+
+function sol(c) { return (c[2] - c[1]) / c[0]; }
+function eqText(c) {
+  var k = c[0], a = c[1];
+  return (k === 1 ? "x" : k + "x") + (a > 0 ? " + " + a : a < 0 ? " \u2212 " + (-a) : "") + " = " + c[2];
+}
+function hintText(c) {
+  var parts = [];
+  if (c[1] > 0) parts.push("\u0565\u0580\u056f\u0578\u0582 \u056f\u0578\u0572\u0574\u056b\u0581 \u0570\u0561\u0576\u056b\u0580 " + c[1]);
+  if (c[1] < 0) parts.push("\u0565\u0580\u056f\u0578\u0582 \u056f\u0578\u0572\u0574\u056b\u0576 \u0563\u0578\u0582\u0574\u0561\u0580\u056b\u0580 " + (-c[1]));
+  if (c[0] > 1) parts.push("\u0565\u0580\u056f\u0578\u0582 \u056f\u0578\u0572\u0574\u0568 \u0562\u0561\u056a\u0561\u0576\u056b\u0580 " + c[0] + "-\u056b \u057e\u0580\u0561");
+  var s = parts.join(", \u0561\u057a\u0561 ");
+  return s.charAt(0).toUpperCase() + s.slice(1) + "\u0589";
+}
+function num(letter) { return ALPHA.indexOf(letter) + 1; }
+
+var cur = null; // { c, solved:[], dec:[] }
+
+function home() {
+  cur = null;
+  function cardOf(c) {
+    var done = saved.done[c.id];
+    return '<button class="case-card" data-id="' + c.id + '">' +
+      (done ? '<span class="done-tag">\u0553\u0531\u053f\u054e\u0531\u053e</span>' : '') +
+      '<h3>' + c.title + '</h3><p>' + c.blurb + '</p>' +
+      '<div class="meta"><span>' + c.clues.length + ' \u0570\u0565\u057f\u0584</span><span class="mini">' +
+      (done ? c.word.join("") : c.word.map(function () { return "\u25a2"; }).join("")) + '</span></div></button>';
+  }
+  var GROUPS = [[1, "\u0531\u057c\u0561\u057b\u056b\u0576 \u0563\u0578\u0580\u056e\u0565\u0580"], [2, "\u0544\u0561\u0569\u0565\u0574\u0561\u057f\u056b\u056f\u0561\u056f\u0561\u0576 \u0562\u0561\u057c\u0561\u0580\u0561\u0576"]];
+  var cards = GROUPS.map(function (g) {
+    var list = CASES.filter(function (c) { return (c.group || 1) === g[0]; });
+    var n = list.filter(function (c) { return saved.done[c.id]; }).length;
+    return '<div class="group"><h2 class="gt">' + g[1] + '</h2><span class="label">' + n + ' / ' + list.length + ' \u0583\u0561\u056f\u057e\u0561\u056e</span></div>' +
+      '<div class="cases">' + list.map(cardOf).join("") + '</div>';
+  }).join("");
+  app.innerHTML =
+    '<header class="top"><span class="label">\u0533\u0561\u0572\u057f\u0576\u056b \u0562\u0561\u056a\u056b\u0576</span><h1>\u0540\u0561\u0576\u0580\u0561\u0570\u0561\u0577\u057e\u056b \u0564\u0565\u057f\u0565\u056f\u057f\u056b\u057e\u0576\u0565\u0580</h1>' +
+    '<p>\u054f\u0561\u057d\u0576\u0565\u0580\u056f\u0578\u0582 \u0563\u0578\u0580\u056e, \u057f\u0561\u057d\u0576\u0565\u0580\u056f\u0578\u0582 \u0563\u0561\u0572\u057f\u0576\u056b \u0562\u0561\u057c\u0589 \u0545\u0578\u0582\u0580\u0561\u0584\u0561\u0576\u0579\u0575\u0578\u0582\u0580 \u0570\u0565\u057f\u0584 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574 \u0567, \u056b\u057d\u056f \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0574\u0561\u0576 \u057a\u0561\u057f\u0561\u057d\u056d\u0561\u0576\u0568 \u057f\u0561\u057c\u056b \u0570\u0561\u0574\u0561\u0580 \u0567\u0589</p></header>' +
+    '<ol class="steps"><li>\u053c\u0578\u0582\u056e\u056b\u0580 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0568 \u0587 \u0563\u057f\u056b\u0580 x-\u0568\u0589</li><li>\u053e\u0561\u056e\u056f\u0561\u0563\u0580\u056b \u0563\u0580\u0584\u0578\u0582\u0574 \u0563\u057f\u056b\u0580 \u0561\u0575\u0564 \u0569\u057e\u056b\u0576 \u0570\u0561\u0574\u0561\u057a\u0561\u057f\u0561\u057d\u056d\u0561\u0576 \u057f\u0561\u057c\u0568\u0589</li><li>\u0540\u0561\u057e\u0561\u0584\u056b\u0580 \u0562\u0561\u057c\u0568 \u0587 \u0583\u0561\u056f\u056b\u0580 \u0563\u0578\u0580\u056e\u0568\u0589</li></ol>' +
+    cards;
+  app.querySelectorAll(".case-card").forEach(function (b) {
+    b.addEventListener("click", function () { open(b.getAttribute("data-id")); });
+  });
+  window.scrollTo(0, 0);
+}
+
+function open(id) {
+  var c = CASES.filter(function (x) { return x.id === id; })[0];
+  cur = { c: c, solved: c.clues.map(function () { return false; }), dec: c.word.map(function () { return false; }) };
+  var story = c.story.map(function (p) { return "<p>" + p + "</p>"; }).join("");
+  var cards = c.clues.map(function (cl, i) {
+    return '<div class="card" id="card-' + i + '"><span class="tag">\u0540\u0565\u057f\u0584 ' + (i + 1) + '</span>' +
+      '<div class="eq">' + eqText(cl) + '</div>' +
+      '<div class="row"><span>x =</span><input id="in-' + i + '" type="text" inputmode="numeric" autocomplete="off" aria-label="x-\u056b \u0561\u0580\u056a\u0565\u0584\u0568, \u0570\u0565\u057f\u0584 ' + (i + 1) + '">' +
+      '<button class="go" data-i="' + i + '">\u054d\u057f\u0578\u0582\u0563\u0565\u056c</button></div>' +
+      '<button class="hint" data-h="' + i + '">\u0540\u0578\u0582\u0577\u0578\u0582\u0574</button><div class="msg" id="msg-' + i + '"></div></div>';
+  }).join("");
+  var letters = ALPHA.map(function (l, i) {
+    return '<button data-n="' + (i + 1) + '" aria-label="' + l + ', ' + (i + 1) + '"><span class="ch">' + l + '</span><span class="no">' + (i + 1) + '</span></button>';
+  }).join("");
+  app.innerHTML =
+    '<button class="back" id="back">\u2190 \u0532\u0578\u056c\u0578\u0580 \u0563\u0578\u0580\u056e\u0565\u0580\u0568</button>' +
+    '<section class="report"><span class="label">\u0533\u0578\u0580\u056e\u056b \u0576\u0575\u0578\u0582\u0569\u0565\u0580</span><h2>' + c.title + '</h2>' + story + '</section>' +
+    '<div class="label" style="margin-bottom:8px">\u0533\u0561\u0572\u057f\u0576\u056b \u0562\u0561\u057c\u0568</div><div class="slots" id="slots"></div>' +
+    '<div class="evidence">' + cards + '</div>' +
+    '<section class="book"><div class="book-head"><h3 style="font-size:1.15rem">\u053e\u0561\u056e\u056f\u0561\u0563\u0580\u056b \u0563\u056b\u0580\u0584</h3><span class="label">\u0539\u056b\u057e \u2192 \u057f\u0561\u057c</span></div>' +
+    '<div class="status" id="status" aria-live="polite">\u053c\u0578\u0582\u056e\u056b\u0580 \u0578\u0580\u0587\u0567 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574, \u0561\u057a\u0561 \u0570\u057a\u056b\u0580 \u0569\u057e\u056b\u0576 \u0570\u0561\u0574\u0561\u057a\u0561\u057f\u0561\u057d\u056d\u0561\u0576 \u057f\u0561\u057c\u056b\u0576\u0589</div>' +
+    '<div class="letters" id="letters">' + letters + '</div></section>' +
+    '<div id="winbox"></div><button class="reset" id="reset">\u054d\u056f\u057d\u0565\u056c \u0561\u0575\u057d \u0563\u0578\u0580\u056e\u0568 \u0576\u0578\u0580\u056b\u0581</button>';
+  drawSlots();
+  document.getElementById("back").addEventListener("click", home);
+  document.getElementById("reset").addEventListener("click", function () { delete saved.done[c.id]; persist(); open(c.id); });
+  app.querySelectorAll(".go").forEach(function (b) { b.addEventListener("click", function () { check(+b.getAttribute("data-i")); }); });
+  app.querySelectorAll(".hint").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var i = +b.getAttribute("data-h");
+      var m = document.getElementById("msg-" + i);
+      if (!cur.solved[i]) m.textContent = hintText(c.clues[i]);
+    });
+  });
+  c.clues.forEach(function (_, i) {
+    document.getElementById("in-" + i).addEventListener("keydown", function (e) { if (e.key === "Enter") check(i); });
+  });
+  app.querySelectorAll("#letters button").forEach(function (b) {
+    b.addEventListener("click", function () { pick(+b.getAttribute("data-n"), b); });
+  });
+  window.scrollTo(0, 0);
+}
+
+function drawSlots(popIdx) {
+  var el = document.getElementById("slots");
+  el.innerHTML = cur.c.word.map(function (letter, i) {
+    var cls = "slot" + (cur.dec[i] ? " dec" : cur.solved[i] ? " num" : "") + (i === popIdx ? " pop" : "");
+    return '<div class="' + cls + '"><span class="n">' + (cur.solved[i] ? sol(cur.c.clues[i]) : "") + '</span><span class="l">' + (cur.dec[i] ? letter : "?") + '</span></div>';
+  }).join("");
+}
+
+function setStatus(text, kind) {
+  var s = document.getElementById("status");
+  s.textContent = text; s.className = "status" + (kind ? " " + kind : "");
+}
+
+function shake(el) {
+  el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake");
+}
+
+function check(i) {
+  if (cur.solved[i]) return;
+  var inp = document.getElementById("in-" + i);
+  var msg = document.getElementById("msg-" + i);
+  var v = inp.value.trim().replace("\u2212", "-").replace(",", ".");
+  if (v === "" || isNaN(Number(v))) { msg.textContent = "\u0533\u0580\u056b\u0580 \u0569\u056b\u057e\u0589"; shake(document.getElementById("card-" + i)); return; }
+  var card = document.getElementById("card-" + i);
+  if (Number(v) === sol(cur.c.clues[i])) {
+    cur.solved[i] = true;
+    inp.disabled = true;
+    card.classList.add("solved");
+    msg.textContent = "\u0543\u056b\u0577\u057f \u0567\u0589 x = " + sol(cur.c.clues[i]);
+    card.querySelector(".go").disabled = true;
+    card.querySelector(".hint").hidden = true;
+    drawSlots(i);
+    setStatus("\u0540\u0565\u057f\u0584 " + (i + 1) + "\u055d \u0569\u056b\u057e\u0568 " + sol(cur.c.clues[i]) + " \u0567\u0589 \u0533\u057f\u056b\u0580 \u0561\u0575\u0564 \u0569\u057e\u056b \u057f\u0561\u057c\u0568 \u0563\u0580\u0584\u0578\u0582\u0574\u0589", "good");
+  } else {
+    msg.textContent = "\u054d\u056d\u0561\u056c \u0567\u0589 \u0553\u0578\u0580\u0571\u056b\u0580 \u0576\u0578\u0580\u056b\u0581 \u056f\u0561\u0574 \u0570\u057a\u056b\u0580 \u00ab\u0540\u0578\u0582\u0577\u0578\u0582\u0574\u00bb\u0589";
+    shake(card);
+  }
+}
+
+function pick(n, btn) {
+  var idx = -1;
+  for (var i = 0; i < cur.c.word.length; i++) {
+    if (cur.solved[i] && !cur.dec[i] && sol(cur.c.clues[i]) === n) { idx = i; break; }
+  }
+  if (idx >= 0) {
+    cur.dec[idx] = true;
+    drawSlots(idx);
+    setStatus("\u054f\u0561\u057c\u0568 \u0563\u057f\u0576\u057e\u0565\u0581\u055d " + ALPHA[n - 1] + "\u0589", "good");
+    btn.classList.add("used");
+    if (cur.dec.every(Boolean)) win();
+  } else {
+    shake(btn);
+    var anyPending = cur.solved.some(function (s, j) { return s && !cur.dec[j]; });
+    setStatus(anyPending ? "\u0531\u0575\u057d \u0569\u057e\u0578\u057e \u0570\u0565\u057f\u0584 \u0579\u056f\u0561\u0589 \u0546\u0561\u0575\u056b\u0580 \u0562\u0561\u0581\u0561\u0570\u0561\u0575\u057f\u057e\u0561\u056e \u0569\u057e\u0565\u0580\u056b\u0576 \u057e\u0565\u0580\u0587\u0578\u0582\u0574\u0589" : "\u0531\u0575\u057d \u0569\u057e\u0578\u057e \u0570\u0565\u057f\u0584 \u0564\u0565\u057c \u0579\u056f\u0561\u0589 \u0546\u0561\u056d \u056c\u0578\u0582\u056e\u056b\u0580 \u0570\u0561\u057e\u0561\u057d\u0561\u0580\u0578\u0582\u0574\u0568\u0589", "bad");
+  }
+}
+
+function win() {
+  var c = cur.c;
+  saved.done[c.id] = true; persist();
+  var next = CASES[CASES.indexOf(c) + 1];
+  var box = document.getElementById("winbox");
+  box.innerHTML = '<div class="win"><span class="stamp">\u0533\u0548\u0550\u053e\u0538 \u0553\u0531\u053f\u054e\u0531\u053e \u0537</span><div class="word">' + c.word.join("") + '</div><p>' + c.ending + '</p>' +
+    '<div class="actions">' + (next ? '<button class="btn" id="next">\u0540\u0561\u057b\u0578\u0580\u0564 \u0563\u0578\u0580\u056e\u0568</button>' : '') + '<button class="btn ghost" id="all">\u0532\u0578\u056c\u0578\u0580 \u0563\u0578\u0580\u056e\u0565\u0580\u0568</button></div></div>';
+  if (next) document.getElementById("next").addEventListener("click", function () { open(next.id); });
+  document.getElementById("all").addEventListener("click", home);
+  box.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+home();
+</script>
+
+</body>
+</html>
